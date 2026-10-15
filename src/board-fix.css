@@ -1,0 +1,118 @@
+/* Explicit tracks keep all-black rows from collapsing. The width calculation
+   fits both the phone's width and its remaining vertical play area. */
+.board {
+  width: min(680px, 94vw, calc(70vh * var(--board-ratio)));
+  aspect-ratio: auto;
+}
+
+.board .cell {
+  aspect-ratio: auto;
+  min-width: 0;
+  min-height: 0;
+}
+
+@media (max-width: 760px) {
+  .board {
+    width: min(94vw, calc(54vh * var(--board-ratio)));
+  }
+}
+
+@media (max-width: 390px) {
+  .board {
+    width: min(96vw, calc(51vh * var(--board-ratio)));
+  }
+}
+
+.pack-card.is-solved {
+  box-shadow: inset 0 0 0 2px #5fc39c;
+}
+
+.pack-card.is-solved::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, transparent 70%, #61c59f22);
+}
+
+.pack-card.is-solved .pack-progress {
+  background: #55bc94;
+  color: white;
+}
+
+.celebration-backdrop {
+  z-index: 20;
+}
+
+.celebration {
+  position: relative;
+  width: min(420px, 100%);
+  overflow: hidden;
+  border-radius: 30px;
+  padding: 38px 28px 27px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 24px 80px #17132f99;
+}
+
+.celebration-trophy {
+  margin-bottom: 8px;
+  font-size: 66px;
+  filter: drop-shadow(0 8px 8px #e9b62b55);
+}
+
+.celebration h2 {
+  margin: 3px 0 10px;
+  color: #443b95;
+  font: 800 48px/1 'Baloo 2', sans-serif;
+}
+
+.celebration p {
+  margin: 0 auto 18px;
+  color: #77718e;
+  line-height: 1.5;
+}
+
+.reward {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 22px;
+  border-radius: 99px;
+  padding: 9px 16px;
+  background: #fff2c9;
+  color: #9a6d00;
+}
+
+.celebration button {
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  padding: 13px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.celebration-primary {
+  background: #5b4db5;
+  color: #fff;
+  box-shadow: 0 4px 0 #40358b;
+}
+
+.celebration-secondary {
+  margin-top: 9px;
+  background: transparent;
+  color: #6256b3;
+}
+
+.confetti i {
+  position: absolute;
+  color: #ffc94d;
+  font-style: normal;
+}
+.confetti i:nth-child(1) { left: 8%; top: 11%; color: #ef7774; transform: rotate(20deg); }
+.confetti i:nth-child(2) { left: 20%; top: 25%; color: #64c8a2; }
+.confetti i:nth-child(3) { right: 10%; top: 12%; color: #ffc94d; transform: rotate(18deg); }
+.confetti i:nth-child(4) { right: 22%; top: 27%; color: #7163cc; transform: rotate(35deg); }
+.confetti i:nth-child(5) { right: 7%; top: 43%; color: #ef7774; }
+.confetti i:nth-child(6) { left: 8%; top: 45%; color: #7163cc; transform: rotate(-25deg); }

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
+import './board-fix.css';
 import { puzzles as puzzleData } from './puzzles.js';
 
 const SIZE = 13;
@@ -53,7 +54,18 @@ function buildGrid(words) {
   const ordered = [...placements].sort((a, b) => a.row - b.row || a.col - b.col || (a.direction === 'across' ? -1 : 1));
   let number = 0; const starts = new Map();
   ordered.forEach(p => { const k = key(p.row, p.col); if (!starts.has(k)) starts.set(k, ++number); p.number = starts.get(k); });
-  return { cells, placements };
+  const occupied = [...cells.values()];
+  const minRow = Math.max(0, Math.min(...occupied.map(cell => cell.row)) - 1);
+  const maxRow = Math.min(SIZE - 1, Math.max(...occupied.map(cell => cell.row)) + 1);
+  const minCol = Math.max(0, Math.min(...occupied.map(cell => cell.col)) - 1);
+  const maxCol = Math.min(SIZE - 1, Math.max(...occupied.map(cell => cell.col)) + 1);
+  return {
+    cells,
+    placements,
+    bounds: { minRow, maxRow, minCol, maxCol },
+    rows: maxRow - minRow + 1,
+    cols: maxCol - minCol + 1
+  };
 }
 
 const Icon = ({ children }) => <span aria-hidden="true">{children}</span>;
@@ -62,7 +74,7 @@ function App() {
   const [puzzles] = useState(puzzleData), [selected, setSelected] = useState(puzzleData[0]);
   const [screen, setScreen] = useState('home'), [answers, setAnswers] = useState({}), [active, setActive] = useState(null);
   const [activeEntry, setActiveEntry] = useState(0), [message, setMessage] = useState(''), [menu, setMenu] = useState(false);
-  const [archiveOpen, setArchiveOpen] = useState(false), [seconds, setSeconds] = useState(0), [coins, setCoins] = useState(120);
+  const [archiveOpen, setArchiveOpen] = useState(false), [solvedPuzzle, setSolvedPuzzle] = useState(null), [seconds, setSeconds] = useState(0), [coins, setCoins] = useState(120);
   const cellRefs = useRef({});
 
   const grid = useMemo(() => selected ? buildGrid(selected.words) : null, [selected]);
@@ -120,7 +132,7 @@ function App() {
     if (filled < grid.cells.size) return setMessage(`Looking good — ${grid.cells.size - filled} squares to go!`);
     const record = { id: selected.id, title: selected.title, theme: selected.theme, date: new Date().toISOString(), time };
     localStorage.setItem('crossword-completed', JSON.stringify([record, ...completed.filter(x => x.id !== selected.id)]));
-    sessionStorage.removeItem(`crossword-${selected.id}`); setCoins(c => c + 30); setMessage('Puzzle complete! +30 coins');
+    sessionStorage.removeItem(`crossword-${selected.id}`); setCoins(c => c + 30); setMessage(''); setSolvedPuzzle(record);
   };
 
   return <div className="app-frame" onKeyDown={handleKey}>
@@ -139,17 +151,17 @@ function App() {
           <div className="daily-copy"><span className="tag">TODAY'S PUZZLE</span><p>Movie Wednesday</p><h2>{puzzles[0].title}</h2><small>Easy · 5–8 min</small><button onClick={() => openPuzzle(puzzles[0])}>{completed.some(x => x.id === puzzles[0].id) ? 'Play again' : 'Play now'} <Icon>▶</Icon></button></div>
         </section>
         <section className="packs-head"><div><span className="mini-label">MORE TO EXPLORE</span><h2>Pick a theme</h2></div><button onClick={() => setArchiveOpen(true)}>View solved</button></section>
-        <section className="pack-grid">{puzzles.map((p, i) => <button className={`pack-card pack-${i}`} key={p.id} onClick={() => openPuzzle(p)}>
-          <span className="pack-icon">{['🎬','🎵','🌍','🍋'][i]}</span><span className="pack-progress">{completed.some(x => x.id === p.id) ? '✓' : `${Math.max(0, Object.keys(JSON.parse(sessionStorage.getItem(`crossword-${p.id}`) || '{}')).length)} filled`}</span><small>{p.theme}</small><b>{p.title}</b><i>Play puzzle →</i>
-        </button>)}</section>
+        <section className="pack-grid">{puzzles.map((p, i) => { const solved = completed.some(x => x.id === p.id); return <button className={`pack-card pack-${i} ${solved ? 'is-solved' : ''}`} key={p.id} onClick={() => openPuzzle(p)}>
+          <span className="pack-icon">{['🎬','🎵','🌍','🍋'][i]}</span><span className="pack-progress">{solved ? '✓ SOLVED' : `${Math.max(0, Object.keys(JSON.parse(sessionStorage.getItem(`crossword-${p.id}`) || '{}')).length)} filled`}</span><small>{p.theme}</small><b>{p.title}</b><i>{solved ? 'Play again ↻' : 'Play puzzle →'}</i>
+        </button>})}</section>
       </main>
       <nav className="bottom-nav"><button className="active"><Icon>⌂</Icon><span>Home</span></button><button onClick={() => openPuzzle(puzzles[1])}><Icon>▦</Icon><span>Puzzles</span></button><button onClick={() => setArchiveOpen(true)}><Icon>♛</Icon><span>Collection</span></button></nav>
     </> : <main className="game-screen" style={{ '--theme': selected.color }}>
       <header className="game-top"><button onClick={() => setScreen('home')} aria-label="Back home">‹</button><div><small>{selected.theme.toUpperCase()} · EASY</small><b>{selected.title}</b></div><span className="timer">◷ {time}</span><span className="game-coins">★ {coins}</span><button onClick={() => setMenu(!menu)} aria-label="Puzzle menu">•••</button></header>
       <div className="game-progress"><i style={{ width: `${progress}%` }}/></div>
       <section className="play-area">
-        <div className="board" role="grid" aria-label={`${selected.title} crossword`}>{Array.from({ length: SIZE * SIZE }, (_, i) => {
-          const r = Math.floor(i / SIZE), c = i % SIZE, k = `${r},${c}`, cell = grid.cells.get(k);
+        <div className="board" role="grid" aria-label={`${selected.title} crossword`} style={{ '--board-ratio': grid.cols / grid.rows, gridTemplateColumns: `repeat(${grid.cols}, 1fr)`, gridTemplateRows: `repeat(${grid.rows}, 1fr)`, aspectRatio: `${grid.cols} / ${grid.rows}` }}>{Array.from({ length: grid.rows * grid.cols }, (_, i) => {
+          const r = grid.bounds.minRow + Math.floor(i / grid.cols), c = grid.bounds.minCol + (i % grid.cols), k = `${r},${c}`, cell = grid.cells.get(k);
           if (!cell) return <div className="block" key={k}/>;
           const start = grid.placements.find(p => p.coords[0] === k), inWord = current.coords.includes(k);
           const wrong = answers[k] && answers[k] !== cell.letter && message.includes('off');
@@ -168,6 +180,12 @@ function App() {
       <section className="keyboard" aria-label="On-screen keyboard">{KEY_ROWS.map((row, i) => <div key={row}>{[...row].map(k => <button key={k} onClick={() => inputLetter(k)}>{k}</button>)}{i === 2 && <button className="backspace" onClick={() => inputLetter('BACK')}>⌫</button>}</div>)}</section>
     </main>}
     {archiveOpen && <div className="modal-backdrop" onClick={() => setArchiveOpen(false)}><aside className="collection" onClick={e => e.stopPropagation()}><button className="modal-close" onClick={() => setArchiveOpen(false)}>×</button><div className="trophy">🏆</div><span className="mini-label">YOUR TROPHY CASE</span><h2>Solved puzzles</h2>{completed.length ? completed.map(x => <div className="solved-row" key={x.id}><span>✓</span><div><b>{x.title}</b><small>{x.theme} · {new Date(x.date).toLocaleDateString()} {x.time ? `· ${x.time}` : ''}</small></div></div>) : <p className="empty">Complete your first puzzle and it’ll be saved right here.</p>}</aside></div>}
+    {solvedPuzzle && <div className="modal-backdrop celebration-backdrop"><aside className="celebration" role="dialog" aria-modal="true" aria-labelledby="congrats-title">
+      <div className="confetti" aria-hidden="true"><i>◆</i><i>●</i><i>★</i><i>■</i><i>●</i><i>▲</i></div>
+      <div className="celebration-trophy">🏆</div><span className="mini-label">PUZZLE COMPLETE</span><h2 id="congrats-title">Congrats!</h2><p>You solved <b>{solvedPuzzle.title}</b> in {solvedPuzzle.time}.</p><div className="reward">★ <b>+30</b> coins</div>
+      <button className="celebration-primary" onClick={() => { setSolvedPuzzle(null); setScreen('home'); window.scrollTo(0, 0); }}>Back to puzzles</button>
+      <button className="celebration-secondary" onClick={() => { setSolvedPuzzle(null); setArchiveOpen(true); }}>View collection</button>
+    </aside></div>}
   </div>;
 }
 
