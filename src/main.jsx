@@ -82,11 +82,20 @@ function App() {
   const completed = JSON.parse(localStorage.getItem('crossword-completed') || '[]');
   useEffect(() => {
     if (!selected || !grid) return;
-    setAnswers(JSON.parse(sessionStorage.getItem(`crossword-${selected.id}`) || '{}'));
-    completionHandled.current = false;
+    const solved = JSON.parse(localStorage.getItem('crossword-completed') || '[]').some(item => item.id === selected.id);
+    const saved = solved
+      ? Object.fromEntries([...grid.cells].map(([key, cell]) => [key, cell.letter]))
+      : JSON.parse(sessionStorage.getItem(`crossword-${selected.id}`) || '{}');
+    setAnswers(saved);
+    completionHandled.current = solved;
     setActive(grid.placements[0]?.coords[0]); setActiveEntry(grid.placements[0]?.id || 0); setMessage(''); setSeconds(0);
   }, [selected, grid]);
-  useEffect(() => { if (selected) sessionStorage.setItem(`crossword-${selected.id}`, JSON.stringify(answers)); }, [answers, selected]);
+  useEffect(() => {
+    if (!selected) return;
+    const solved = JSON.parse(localStorage.getItem('crossword-completed') || '[]').some(item => item.id === selected.id);
+    if (solved) sessionStorage.removeItem(`crossword-${selected.id}`);
+    else sessionStorage.setItem(`crossword-${selected.id}`, JSON.stringify(answers));
+  }, [answers, selected]);
   useEffect(() => { if (screen !== 'game') return; const timer = setInterval(() => setSeconds(s => s + 1), 1000); return () => clearInterval(timer); }, [screen]);
   useEffect(() => {
     if (!selected || !grid || screen !== 'game' || completionHandled.current) return;
@@ -113,8 +122,11 @@ function App() {
 
   const openPuzzle = p => {
     if (p.id === selected.id) {
-      setAnswers(JSON.parse(sessionStorage.getItem(`crossword-${p.id}`) || '{}'));
-      completionHandled.current = false;
+      const solved = JSON.parse(localStorage.getItem('crossword-completed') || '[]').some(item => item.id === p.id);
+      setAnswers(solved
+        ? Object.fromEntries([...grid.cells].map(([key, cell]) => [key, cell.letter]))
+        : JSON.parse(sessionStorage.getItem(`crossword-${p.id}`) || '{}'));
+      completionHandled.current = solved;
       setSeconds(0);
       setActive(grid.placements[0]?.coords[0]);
       setActiveEntry(grid.placements[0]?.id || 0);
@@ -174,7 +186,10 @@ function App() {
       </main>
       <nav className="bottom-nav"><button className="active"><Icon>⌂</Icon><span>Home</span></button><button onClick={() => openPuzzle(puzzles[1])}><Icon>▦</Icon><span>Puzzles</span></button><button onClick={() => setArchiveOpen(true)}><Icon>♛</Icon><span>Collection</span></button></nav>
     </> : <main className="game-screen" style={{ '--theme': selected.color }}>
-      <header className="game-top"><button onClick={() => setScreen('home')} aria-label="Back home">‹</button><div><small>{selected.theme.toUpperCase()} · EASY</small><b>{selected.title}</b></div><span className="timer">◷ {time}</span><span className="game-coins">★ {coins}</span><button onClick={() => setMenu(!menu)} aria-label="Puzzle menu">•••</button></header>
+      <header className="game-header">
+        <div className="game-top"><button onClick={() => setScreen('home')} aria-label="Back home">‹</button><div><small>{selected.theme.toUpperCase()} · EASY</small><b>{selected.title}</b></div><span className="timer">◷ {time}</span><span className="game-coins">★ {coins}</span><button onClick={() => setMenu(!menu)} aria-label="Puzzle menu">•••</button></div>
+        <section className="header-tools" aria-label="Puzzle tools"><button onClick={hintLetter}><Icon>💡</Icon><span>Letter</span><small>★ 10</small></button><button onClick={hintWord}><Icon>✨</Icon><span>Words</span><small>★ 25</small></button><div className={`header-errors ${wrongCount ? 'has-errors' : ''}`} role="status" aria-live="polite"><Icon>{wrongCount ? '!' : '✓'}</Icon><span>Errors</span><small>{wrongCount}</small></div></section>
+      </header>
       <div className="game-progress"><i style={{ width: `${progress}%` }}/></div>
       <section className="play-area">
         <div className="board" role="grid" aria-label={`${selected.title} crossword`} style={{ '--board-ratio': grid.cols / grid.rows, gridTemplateColumns: `repeat(${grid.cols}, 1fr)`, gridTemplateRows: `repeat(${grid.rows}, 1fr)`, aspectRatio: `${grid.cols} / ${grid.rows}` }}>{Array.from({ length: grid.rows * grid.cols }, (_, i) => {
@@ -193,7 +208,6 @@ function App() {
         <button onClick={e => { e.stopPropagation(); const i = grid.placements.indexOf(current); const p = grid.placements[(i + 1) % grid.placements.length]; setActiveEntry(p.id); focusKey(p.coords[0]); }}>›</button>
       </section>
       {message && <div className="toast" role="status">{message}<button onClick={() => setMessage('')}>×</button></div>}
-      <section className="tool-row"><button onClick={hintLetter}><Icon>💡</Icon><span>Letter<small>★ 10</small></span></button><button onClick={hintWord}><Icon>✨</Icon><span>Word<small>★ 25</small></span></button><div className={`error-counter ${wrongCount ? 'has-errors' : ''}`} role="status" aria-live="polite"><Icon>{wrongCount ? '!' : '✓'}</Icon><span>Errors<small>{wrongCount}</small></span></div></section>
       <section className="keyboard" aria-label="On-screen keyboard">{KEY_ROWS.map((row, i) => <div key={row}>{[...row].map(k => <button key={k} onClick={() => inputLetter(k)}>{k}</button>)}{i === 2 && <button className="backspace" onClick={() => inputLetter('BACK')}>⌫</button>}</div>)}</section>
     </main>}
     {archiveOpen && <div className="modal-backdrop" onClick={() => setArchiveOpen(false)}><aside className="collection" onClick={e => e.stopPropagation()}><button className="modal-close" onClick={() => setArchiveOpen(false)}>×</button><div className="trophy">🏆</div><span className="mini-label">YOUR TROPHY CASE</span><h2>Solved puzzles</h2>{completed.length ? completed.map(x => <div className="solved-row" key={x.id}><span>✓</span><div><b>{x.title}</b><small>{x.theme} · {new Date(x.date).toLocaleDateString()} {x.time ? `· ${x.time}` : ''}</small></div></div>) : <p className="empty">Complete your first puzzle and it’ll be saved right here.</p>}</aside></div>}

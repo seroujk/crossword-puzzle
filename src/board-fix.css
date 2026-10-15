@@ -17,6 +17,80 @@
   }
 }
 
+.game-header {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  box-shadow: 0 2px 9px #37325e14;
+}
+
+.header-tools {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 12px 9px;
+}
+
+.header-tools button,
+.header-errors {
+  min-width: 92px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 10px;
+  padding: 6px 9px;
+  background: #f0eef8;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.header-tools button {
+  cursor: pointer;
+}
+
+.header-tools small,
+.header-errors small {
+  color: #8b849f;
+  font-size: 8px;
+}
+
+.header-errors {
+  background: #e6f7ef;
+  color: #318664;
+}
+
+.header-errors.has-errors {
+  background: #ffebeb;
+  color: #c84747;
+}
+
+.header-errors.has-errors small {
+  color: #c84747;
+}
+
+@media (max-width: 760px) {
+  .header-tools {
+    padding: 0 8px 6px;
+  }
+
+  .header-tools button,
+  .header-errors {
+    min-width: 0;
+    flex: 1;
+    max-width: 112px;
+    padding: 5px 4px;
+    font-size: 9px;
+  }
+
+  .play-area {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
 @media (max-width: 390px) {
   .board {
     width: min(96vw, calc(51vh * var(--board-ratio)));
