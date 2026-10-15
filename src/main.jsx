@@ -76,25 +76,51 @@ function App() {
   const [activeEntry, setActiveEntry] = useState(0), [message, setMessage] = useState(''), [menu, setMenu] = useState(false);
   const [archiveOpen, setArchiveOpen] = useState(false), [solvedPuzzle, setSolvedPuzzle] = useState(null), [seconds, setSeconds] = useState(0), [coins, setCoins] = useState(120);
   const cellRefs = useRef({});
+  const completionHandled = useRef(false);
 
   const grid = useMemo(() => selected ? buildGrid(selected.words) : null, [selected]);
   const completed = JSON.parse(localStorage.getItem('crossword-completed') || '[]');
   useEffect(() => {
     if (!selected || !grid) return;
     setAnswers(JSON.parse(sessionStorage.getItem(`crossword-${selected.id}`) || '{}'));
+    completionHandled.current = false;
     setActive(grid.placements[0]?.coords[0]); setActiveEntry(grid.placements[0]?.id || 0); setMessage(''); setSeconds(0);
   }, [selected, grid]);
   useEffect(() => { if (selected) sessionStorage.setItem(`crossword-${selected.id}`, JSON.stringify(answers)); }, [answers, selected]);
   useEffect(() => { if (screen !== 'game') return; const timer = setInterval(() => setSeconds(s => s + 1), 1000); return () => clearInterval(timer); }, [screen]);
+  useEffect(() => {
+    if (!selected || !grid || screen !== 'game' || completionHandled.current) return;
+    const entries = [...grid.cells];
+    const complete = entries.length > 0 && entries.every(([key, cell]) => answers[key] === cell.letter);
+    if (!complete) return;
+    completionHandled.current = true;
+    const solveTime = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
+    const record = { id: selected.id, title: selected.title, theme: selected.theme, date: new Date().toISOString(), time: solveTime };
+    const saved = JSON.parse(localStorage.getItem('crossword-completed') || '[]');
+    localStorage.setItem('crossword-completed', JSON.stringify([record, ...saved.filter(item => item.id !== selected.id)]));
+    sessionStorage.removeItem(`crossword-${selected.id}`);
+    setCoins(value => value + 30);
+    setMessage('');
+    setSolvedPuzzle(record);
+  }, [answers, grid, screen, seconds, selected]);
 
   if (!selected || !grid) return <div className="splash"><div className="logo-burst">C</div><b>CluePop</b></div>;
   const current = grid.placements.find(p => p.id === activeEntry) || grid.placements[0];
   const filled = [...grid.cells.keys()].filter(k => answers[k]).length;
+  const wrongCount = [...grid.cells].filter(([key, cell]) => answers[key] && answers[key] !== cell.letter).length;
   const progress = Math.round(filled / grid.cells.size * 100);
-  const isSolved = completed.some(x => x.id === selected.id);
   const time = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
 
-  const openPuzzle = p => { setSelected(p); setScreen('game'); window.scrollTo(0, 0); };
+  const openPuzzle = p => {
+    if (p.id === selected.id) {
+      setAnswers(JSON.parse(sessionStorage.getItem(`crossword-${p.id}`) || '{}'));
+      completionHandled.current = false;
+      setSeconds(0);
+      setActive(grid.placements[0]?.coords[0]);
+      setActiveEntry(grid.placements[0]?.id || 0);
+    }
+    setSelected(p); setScreen('game'); window.scrollTo(0, 0);
+  };
   const chooseCell = k => {
     const cell = grid.cells.get(k);
     if (active === k && cell.entries.length > 1) setActiveEntry(cell.entries.find(id => id !== activeEntry) ?? cell.entries[0]);
@@ -126,15 +152,6 @@ function App() {
     setAnswers(a => ({ ...a, ...Object.fromEntries(current.coords.map((k, i) => [k, current.word[i]])) }));
     setCoins(c => c - 25); setMessage('Word revealed!');
   };
-  const check = () => {
-    const wrong = [...grid.cells].filter(([k, cell]) => answers[k] && answers[k] !== cell.letter);
-    if (wrong.length) return setMessage(`${wrong.length} letter${wrong.length > 1 ? 's are' : ' is'} a little off.`);
-    if (filled < grid.cells.size) return setMessage(`Looking good — ${grid.cells.size - filled} squares to go!`);
-    const record = { id: selected.id, title: selected.title, theme: selected.theme, date: new Date().toISOString(), time };
-    localStorage.setItem('crossword-completed', JSON.stringify([record, ...completed.filter(x => x.id !== selected.id)]));
-    sessionStorage.removeItem(`crossword-${selected.id}`); setCoins(c => c + 30); setMessage(''); setSolvedPuzzle(record);
-  };
-
   return <div className="app-frame" onKeyDown={handleKey}>
     {screen === 'home' ? <>
       <header className="home-header">
@@ -164,7 +181,7 @@ function App() {
           const r = grid.bounds.minRow + Math.floor(i / grid.cols), c = grid.bounds.minCol + (i % grid.cols), k = `${r},${c}`, cell = grid.cells.get(k);
           if (!cell) return <div className="block" key={k}/>;
           const start = grid.placements.find(p => p.coords[0] === k), inWord = current.coords.includes(k);
-          const wrong = answers[k] && answers[k] !== cell.letter && message.includes('off');
+          const wrong = answers[k] && answers[k] !== cell.letter;
           return <button tabIndex={active === k ? 0 : -1} key={k} ref={el => cellRefs.current[k] = el} className={`cell ${active === k ? 'selected' : ''} ${inWord ? 'in-word' : ''} ${wrong ? 'wrong' : ''}`} onClick={() => chooseCell(k)}>
             {start && <small>{start.number}</small>}<span>{answers[k]}</span>
           </button>;
@@ -176,7 +193,7 @@ function App() {
         <button onClick={e => { e.stopPropagation(); const i = grid.placements.indexOf(current); const p = grid.placements[(i + 1) % grid.placements.length]; setActiveEntry(p.id); focusKey(p.coords[0]); }}>›</button>
       </section>
       {message && <div className="toast" role="status">{message}<button onClick={() => setMessage('')}>×</button></div>}
-      <section className="tool-row"><button onClick={hintLetter}><Icon>💡</Icon><span>Letter<small>★ 10</small></span></button><button onClick={hintWord}><Icon>✨</Icon><span>Word<small>★ 25</small></span></button><button onClick={check}><Icon>✓</Icon><span>Check<small>FREE</small></span></button></section>
+      <section className="tool-row"><button onClick={hintLetter}><Icon>💡</Icon><span>Letter<small>★ 10</small></span></button><button onClick={hintWord}><Icon>✨</Icon><span>Word<small>★ 25</small></span></button><div className={`error-counter ${wrongCount ? 'has-errors' : ''}`} role="status" aria-live="polite"><Icon>{wrongCount ? '!' : '✓'}</Icon><span>Errors<small>{wrongCount}</small></span></div></section>
       <section className="keyboard" aria-label="On-screen keyboard">{KEY_ROWS.map((row, i) => <div key={row}>{[...row].map(k => <button key={k} onClick={() => inputLetter(k)}>{k}</button>)}{i === 2 && <button className="backspace" onClick={() => inputLetter('BACK')}>⌫</button>}</div>)}</section>
     </main>}
     {archiveOpen && <div className="modal-backdrop" onClick={() => setArchiveOpen(false)}><aside className="collection" onClick={e => e.stopPropagation()}><button className="modal-close" onClick={() => setArchiveOpen(false)}>×</button><div className="trophy">🏆</div><span className="mini-label">YOUR TROPHY CASE</span><h2>Solved puzzles</h2>{completed.length ? completed.map(x => <div className="solved-row" key={x.id}><span>✓</span><div><b>{x.title}</b><small>{x.theme} · {new Date(x.date).toLocaleDateString()} {x.time ? `· ${x.time}` : ''}</small></div></div>) : <p className="empty">Complete your first puzzle and it’ll be saved right here.</p>}</aside></div>}
