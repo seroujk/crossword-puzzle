@@ -101,6 +101,11 @@
   box-shadow: inset 0 0 0 2px #5fc39c;
 }
 
+.pack-4 { background: #f4e6da; }
+.pack-5 { background: #f0e8f7; }
+.pack-6 { background: #ffe8ec; }
+.pack-7 { background: #e5f1fb; }
+
 .pack-card.is-solved::after {
   content: '';
   position: absolute;

@@ -6,6 +6,7 @@ import { puzzles as puzzleData } from './puzzles.js';
 
 const SIZE = 13;
 const KEY_ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
+const THEME_ICONS = { Movies: '🎬', Music: '🎵', Geography: '🌍', Food: '🍋', History: '🏛️', Books: '📚', 'Lebanese Artists': '🌟', Christianity: '🕊️' };
 
 function buildGrid(words) {
   const placements = [], cells = new Map();
@@ -85,7 +86,7 @@ function App() {
     const solved = JSON.parse(localStorage.getItem('crossword-completed') || '[]').some(item => item.id === selected.id);
     const saved = solved
       ? Object.fromEntries([...grid.cells].map(([key, cell]) => [key, cell.letter]))
-      : JSON.parse(sessionStorage.getItem(`crossword-${selected.id}`) || '{}');
+      : JSON.parse(sessionStorage.getItem(`crossword-v2-${selected.id}`) || '{}');
     setAnswers(saved);
     completionHandled.current = solved;
     setActive(grid.placements[0]?.coords[0]); setActiveEntry(grid.placements[0]?.id || 0); setMessage(''); setSeconds(0);
@@ -93,8 +94,8 @@ function App() {
   useEffect(() => {
     if (!selected) return;
     const solved = JSON.parse(localStorage.getItem('crossword-completed') || '[]').some(item => item.id === selected.id);
-    if (solved) sessionStorage.removeItem(`crossword-${selected.id}`);
-    else sessionStorage.setItem(`crossword-${selected.id}`, JSON.stringify(answers));
+    if (solved) sessionStorage.removeItem(`crossword-v2-${selected.id}`);
+    else sessionStorage.setItem(`crossword-v2-${selected.id}`, JSON.stringify(answers));
   }, [answers, selected]);
   useEffect(() => { if (screen !== 'game') return; const timer = setInterval(() => setSeconds(s => s + 1), 1000); return () => clearInterval(timer); }, [screen]);
   useEffect(() => {
@@ -107,7 +108,7 @@ function App() {
     const record = { id: selected.id, title: selected.title, theme: selected.theme, date: new Date().toISOString(), time: solveTime };
     const saved = JSON.parse(localStorage.getItem('crossword-completed') || '[]');
     localStorage.setItem('crossword-completed', JSON.stringify([record, ...saved.filter(item => item.id !== selected.id)]));
-    sessionStorage.removeItem(`crossword-${selected.id}`);
+    sessionStorage.removeItem(`crossword-v2-${selected.id}`);
     setCoins(value => value + 30);
     setMessage('');
     setSolvedPuzzle(record);
@@ -125,7 +126,7 @@ function App() {
       const solved = JSON.parse(localStorage.getItem('crossword-completed') || '[]').some(item => item.id === p.id);
       setAnswers(solved
         ? Object.fromEntries([...grid.cells].map(([key, cell]) => [key, cell.letter]))
-        : JSON.parse(sessionStorage.getItem(`crossword-${p.id}`) || '{}'));
+        : JSON.parse(sessionStorage.getItem(`crossword-v2-${p.id}`) || '{}'));
       completionHandled.current = solved;
       setSeconds(0);
       setActive(grid.placements[0]?.coords[0]);
@@ -181,7 +182,7 @@ function App() {
         </section>
         <section className="packs-head"><div><span className="mini-label">MORE TO EXPLORE</span><h2>Pick a theme</h2></div><button onClick={() => setArchiveOpen(true)}>View solved</button></section>
         <section className="pack-grid">{puzzles.map((p, i) => { const solved = completed.some(x => x.id === p.id); return <button className={`pack-card pack-${i} ${solved ? 'is-solved' : ''}`} key={p.id} onClick={() => openPuzzle(p)}>
-          <span className="pack-icon">{['🎬','🎵','🌍','🍋'][i]}</span><span className="pack-progress">{solved ? '✓ SOLVED' : `${Math.max(0, Object.keys(JSON.parse(sessionStorage.getItem(`crossword-${p.id}`) || '{}')).length)} filled`}</span><small>{p.theme}</small><b>{p.title}</b><i>{solved ? 'Play again ↻' : 'Play puzzle →'}</i>
+          <span className="pack-icon">{THEME_ICONS[p.theme]}</span><span className="pack-progress">{solved ? '✓ SOLVED' : `${Math.max(0, Object.keys(JSON.parse(sessionStorage.getItem(`crossword-v2-${p.id}`) || '{}')).length)} filled`}</span><small>{p.theme}</small><b>{p.title}</b><i>{solved ? 'Play again ↻' : 'Play puzzle →'}</i>
         </button>})}</section>
       </main>
       <nav className="bottom-nav"><button className="active"><Icon>⌂</Icon><span>Home</span></button><button onClick={() => openPuzzle(puzzles[1])}><Icon>▦</Icon><span>Puzzles</span></button><button onClick={() => setArchiveOpen(true)}><Icon>♛</Icon><span>Collection</span></button></nav>
