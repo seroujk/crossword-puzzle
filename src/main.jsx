@@ -6,7 +6,7 @@ import { puzzles as puzzleData } from './puzzles.js';
 
 const SIZE = 13;
 const KEY_ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
-const THEME_ICONS = { Movies: '🎬', Music: '🎵', Geography: '🌍', Food: '🍋', History: '🏛️', Books: '📚', 'Lebanese Artists': '🌟', Christianity: '🕊️' };
+const THEME_ICONS = { Movies: '🎬', Music: '🎵', Geography: '🌍', Food: '🍋', History: '🏛️', Books: '📚', 'Lebanese Artists': '🌟', Christianity: '🕊️', Nature: '🌿', Sports: '🏅', Science: '🔬', Television: '📺', Animals: '🐾', Weather: '🌦️', Art: '🎨', Home: '🏠' };
 
 function buildGrid(words) {
   const placements = [], cells = new Map();
@@ -81,6 +81,14 @@ function App() {
 
   const grid = useMemo(() => selected ? buildGrid(selected.words) : null, [selected]);
   const completed = JSON.parse(localStorage.getItem('crossword-completed') || '[]');
+  const now = new Date();
+  const dateLabel = new Intl.DateTimeFormat(undefined, { weekday: 'long', month: 'long', day: 'numeric' }).format(now);
+  const calendarDays = Array.from({ length: 7 }, (_, index) => {
+    const date = new Date(now.getFullYear(), now.getMonth(), now.getDate() + index - 3);
+    return { date, weekday: new Intl.DateTimeFormat(undefined, { weekday: 'narrow' }).format(date), day: date.getDate(), today: index === 3 };
+  });
+  const heroPuzzle = puzzles.find(puzzle => !completed.some(item => item.id === puzzle.id)) || puzzles[0];
+  const heroProgress = Object.keys(JSON.parse(sessionStorage.getItem(`crossword-v2-${heroPuzzle.id}`) || '{}')).length;
   useEffect(() => {
     if (!selected || !grid) return;
     const solved = JSON.parse(localStorage.getItem('crossword-completed') || '[]').some(item => item.id === selected.id);
@@ -174,11 +182,11 @@ function App() {
       </header>
       {menu && <div className="quick-menu"><button onClick={() => setArchiveOpen(true)}>🏆 Solved collection</button><button onClick={() => setMenu(false)}>⚙️ Settings</button></div>}
       <main className="home-main">
-        <section className="welcome"><div><p>Wednesday, October 14</p><h1>Ready for your<br/><em>daily word break?</em></h1></div><div className="streak"><b>3</b><span>🔥 day<br/>streak</span></div></section>
-        <div className="date-strip" aria-label="Daily calendar">{['S','M','T','W','T','F','S'].map((d,i) => <div className={i === 3 ? 'today' : ''} key={i}><small>{d}</small><b>{11+i}</b>{i < 3 && <span>✓</span>}</div>)}</div>
+        <section className="welcome"><div><p>{dateLabel}</p><h1>Ready for your<br/><em>daily word break?</em></h1></div><div className="streak"><b>{completed.length}</b><span>✓ puzzles<br/>solved</span></div></section>
+        <div className="date-strip" aria-label="This week">{calendarDays.map((item, index) => <div className={item.today ? 'today' : ''} key={item.date.toISOString()}><small>{item.weekday}</small><b>{item.day}</b>{index < 3 && <span>•</span>}</div>)}</div>
         <section className="daily-card">
-          <div className="card-art"><div className="film">▰</div><div className="star">★</div><div className="ticket">ADMIT ONE</div></div>
-          <div className="daily-copy"><span className="tag">TODAY'S PUZZLE</span><p>Movie Wednesday</p><h2>{puzzles[0].title}</h2><small>Easy · 5–8 min</small><button onClick={() => openPuzzle(puzzles[0])}>{completed.some(x => x.id === puzzles[0].id) ? 'Play again' : 'Play now'} <Icon>▶</Icon></button></div>
+          <div className="card-art"><div className="film">{THEME_ICONS[heroPuzzle.theme]}</div><div className="star">★</div><div className="ticket">NEXT UP</div></div>
+          <div className="daily-copy"><span className="tag">{heroProgress ? 'CONTINUE PLAYING' : 'YOUR NEXT PUZZLE'}</span><p>{heroPuzzle.theme}</p><h2>{heroPuzzle.title}</h2><small>{heroProgress ? `${heroProgress} letters filled` : 'Easy · 5–8 min'}</small><button onClick={() => openPuzzle(heroPuzzle)}>{heroProgress ? 'Continue' : completed.length === puzzles.length ? 'Play again' : 'Play now'} <Icon>▶</Icon></button></div>
         </section>
         <section className="packs-head"><div><span className="mini-label">MORE TO EXPLORE</span><h2>Pick a theme</h2></div><button onClick={() => setArchiveOpen(true)}>View solved</button></section>
         <section className="pack-grid">{puzzles.map((p, i) => { const solved = completed.some(x => x.id === p.id); return <button className={`pack-card pack-${i} ${solved ? 'is-solved' : ''}`} key={p.id} onClick={() => openPuzzle(p)}>

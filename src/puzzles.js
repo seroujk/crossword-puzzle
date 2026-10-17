@@ -30,5 +30,37 @@ export const puzzles = [
   {
     id: 'faith-and-light', theme: 'Christianity', title: 'Faith & Light', kicker: 'Familiar words of faith and hope.', color: '#4d86b6',
     words: [['EASTER','Celebration of the Resurrection'],['CHURCH','A place of Christian worship'],['PRAYER','Words spoken to God'],['GOSPEL','The good news, or one of four New Testament books'],['JESUS','Central figure of Christianity'],['APOSTLE','One sent out to share the faith'],['CROSS','A central symbol of Christianity'],['BIBLE','The Christian holy book']]
+  },
+  {
+    id: 'wild-wonders', theme: 'Nature', title: 'Wild Wonders', kicker: 'Take a walk on the wild side.', color: '#4c9a6a',
+    words: [['TURTLE','A slow animal with a shell'],['RABBIT','A long-eared animal'],['SUNSET','The evening disappearance of the sun'],['MOUNTAIN','A very high natural landform'],['FOREST','A large area covered with trees'],['FLOWER','A colorful bloom'],['BUTTERFLY','An insect with colorful wings'],['WATERFALL','Water dropping over a steep edge']]
+  },
+  {
+    id: 'game-on', theme: 'Sports', title: 'Game On!', kicker: 'Easy clues for every fan.', color: '#e57b39',
+    words: [['SCORE','Points earned in a game'],['TEAM','A group of players on one side'],['MEDAL','A prize worn around the neck'],['COACH','The person who guides a team'],['SOCCER','A sport played with a round ball and goals'],['TENNIS','A racket sport played over a net'],['RACE','A contest to finish first'],['STADIUM','A large place where sports are played']]
+  },
+  {
+    id: 'bright-ideas', theme: 'Science', title: 'Bright Ideas', kicker: 'Simple science, satisfying solves.', color: '#3f91a8',
+    words: [['PLANET','A world that orbits a star'],['ATOM','A tiny building block of matter'],['ENERGY','The ability to do work'],['MAGNET','An object that attracts iron'],['SPACE','The vast region beyond Earth'],['LIGHT','What helps our eyes see'],['ROCKET','A vehicle built for space travel'],['SCIENCE','The study of the natural world']]
+  },
+  {
+    id: 'small-screen', theme: 'Television', title: 'Small Screen', kicker: 'Tune in to an easy one.', color: '#6656b8',
+    words: [['REMOTE','A device used to change channels'],['EPISODE','One part of a television series'],['COMEDY','A show made to make you laugh'],['ACTOR','A person who plays a role'],['DRAMA','A serious kind of show'],['CHANNEL','A station you can watch'],['SERIES','A television story told in episodes'],['SCREEN','The part of a TV that shows the picture']]
+  },
+  {
+    id: 'animal-friends', theme: 'Animals', title: 'Animal Friends', kicker: 'A playful pack from the animal kingdom.', color: '#b67d45',
+    words: [['KITTEN','A young cat'],['TIGER','A large striped cat'],['HORSE','An animal people ride'],['MONKEY','A playful primate'],['ELEPHANT','A huge animal with a trunk'],['DOLPHIN','A smart mammal that lives in the sea'],['PENGUIN','A black-and-white bird that cannot fly'],['PANDA','A black-and-white bear']]
+  },
+  {
+    id: 'weather-watch', theme: 'Weather', title: 'Weather Watch', kicker: 'A breezy forecast of clues.', color: '#5b91c9',
+    words: [['CLOUD','A white or gray shape in the sky'],['UMBRELLA','Something carried on a rainy day'],['SUNSHINE','Bright light from the sun'],['SNOW','Soft white flakes from the sky'],['RAINBOW','Colorful arc seen after rain'],['STORM','Weather with strong wind or rain'],['THUNDER','The loud sound during a storm'],['BREEZE','A gentle wind']]
+  },
+  {
+    id: 'art-studio', theme: 'Art', title: 'Art Studio', kicker: 'Colorful clues for creative minds.', color: '#c65f86',
+    words: [['PENCIL','A tool used for drawing'],['CANVAS','The surface an artist may paint on'],['SKETCH','A quick drawing'],['COLOR','What red, blue, and yellow are'],['MUSEUM','A place that displays art'],['ARTIST','A person who creates art'],['PORTRAIT','A picture of a person'],['PAINTING','A picture made with paint']]
+  },
+  {
+    id: 'home-sweet-home', theme: 'Home', title: 'Home Sweet Home', kicker: 'Comfortable clues from every room.', color: '#7b8a59',
+    words: [['LAMP','A small source of light'],['PILLOW','A soft place to rest your head'],['CHAIR','A seat for one person'],['WINDOW','An opening that lets in light'],['MIRROR','Something that shows your reflection'],['KITCHEN','Room where meals are prepared'],['TABLE','Furniture with a flat top'],['GARDEN','A place where flowers may grow']]
   }
 ];

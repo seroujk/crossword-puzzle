@@ -105,6 +105,14 @@
 .pack-5 { background: #f0e8f7; }
 .pack-6 { background: #ffe8ec; }
 .pack-7 { background: #e5f1fb; }
+.pack-8 { background: #e5f5e9; }
+.pack-9 { background: #fff0df; }
+.pack-10 { background: #e2f3f6; }
+.pack-11 { background: #ece9ff; }
+.pack-12 { background: #f4eadb; }
+.pack-13 { background: #e8f3ff; }
+.pack-14 { background: #fbe8ef; }
+.pack-15 { background: #eef2e3; }
 
 .pack-card.is-solved::after {
   content: '';
