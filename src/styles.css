@@ -1,3 +1,874 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;600;700;800&display=swap');
-:root{font-family:'Nunito',sans-serif;color:#282947;background:#dedcf1;font-synthesis:none;--purple:#5144a9;--yellow:#ffc94d;--ink:#282947}*{box-sizing:border-box}body{margin:0;min-width:320px}button{font:inherit;color:inherit}.app-frame{width:min(100%,1180px);min-height:100vh;margin:auto;background:#f8f7fc;box-shadow:0 0 50px #35306425;position:relative}.home-header{height:76px;padding:0 clamp(18px,5vw,54px);display:flex;align-items:center;justify-content:space-between;background:#fff}.round-btn,.game-top button{border:0;background:#f0eef8;width:42px;height:42px;border-radius:14px;font-size:20px;cursor:pointer}.wordmark{display:flex;align-items:center;gap:9px;font:800 25px 'Baloo 2';color:#4d43a8}.logo-burst{width:38px;height:38px;display:grid;place-items:center;border-radius:13px 13px 13px 3px;background:#ffc94d;color:#4d43a8;font:800 23px 'Baloo 2';transform:rotate(-5deg)}.wordmark .logo-burst{font-size:20px}.coin-pill{border:0;background:#f2efff;color:#5144a9;border-radius:99px;padding:9px 14px;font-weight:800}.coin-pill span{color:#f5ae16}.quick-menu{position:absolute;top:68px;left:20px;z-index:5;width:210px;background:white;border-radius:17px;padding:8px;box-shadow:0 15px 40px #302b6160}.quick-menu button{display:block;width:100%;border:0;background:none;text-align:left;padding:12px;border-radius:10px}.home-main{padding:44px clamp(18px,5vw,58px) 110px}.welcome{display:flex;justify-content:space-between;align-items:end}.welcome p,.mini-label{font-size:11px;font-weight:800;letter-spacing:.13em;color:#7d789c;text-transform:uppercase}.welcome h1{font:800 clamp(36px,5vw,64px)/.98 'Baloo 2';margin:7px 0;color:#312d63}.welcome h1 em{color:#6f5ed2;font-style:normal}.streak{display:flex;align-items:center;gap:8px;background:#fff0d4;border-radius:20px;padding:12px 16px;color:#d76b30}.streak b{font:800 32px 'Baloo 2'}.streak span{font-size:11px;font-weight:800;text-transform:uppercase}.date-strip{display:grid;grid-template-columns:repeat(7,1fr);max-width:640px;margin:38px auto 30px;background:#fff;border-radius:20px;padding:9px;box-shadow:0 8px 30px #3e376a12}.date-strip div{position:relative;text-align:center;padding:8px 2px;border-radius:14px;display:grid;gap:1px}.date-strip small{font-size:10px;color:#9691ad}.date-strip b{font-size:15px}.date-strip span{position:absolute;right:5px;top:3px;color:#5abf99;font-size:8px}.date-strip .today{background:#5b4db5;color:#fff}.date-strip .today small{color:#d7d2ff}.daily-card{min-height:280px;border-radius:30px;background:linear-gradient(135deg,#5243aa,#7664d1);color:#fff;display:grid;grid-template-columns:1fr 1.25fr;overflow:hidden;box-shadow:0 20px 50px #463e8b30}.card-art{position:relative;min-height:260px;background:radial-gradient(circle at 45% 50%,#8171df 0 3px,transparent 4px),linear-gradient(145deg,#382f87,#6b58c3);background-size:22px 22px,auto}.film{position:absolute;left:16%;top:24%;font-size:95px;transform:rotate(-12deg);color:#ffd05c;text-shadow:8px 9px 0 #2f286f}.star{position:absolute;right:13%;top:17%;font-size:56px;color:#ef7b7a;transform:rotate(10deg)}.ticket{position:absolute;right:12%;bottom:20%;padding:16px 21px;background:#fff3c4;color:#5a48a9;font-weight:900;font-size:11px;transform:rotate(8deg);box-shadow:6px 6px 0 #f09c62}.daily-copy{align-self:center;padding:34px clamp(24px,5vw,62px)}.tag{display:inline-block;background:#ffc94d;color:#473a91;border-radius:6px;padding:5px 9px;font-size:9px;font-weight:900;letter-spacing:.12em}.daily-copy p{font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;margin:18px 0 4px;color:#d9d4ff}.daily-copy h2,.packs-head h2,.collection h2{font:800 clamp(31px,4vw,48px)/1 'Baloo 2';margin:0}.daily-copy small{display:block;margin:8px 0 24px;color:#d9d4ff}.daily-copy button{border:0;border-radius:14px;background:#ffc94d;color:#3c337e;padding:13px 20px;font-weight:900;box-shadow:0 5px 0 #dca12d;cursor:pointer}.packs-head{display:flex;align-items:end;justify-content:space-between;margin:55px 0 20px}.packs-head h2{color:#332f65}.packs-head button{border:0;background:none;color:#6b5ac6;font-weight:800;cursor:pointer}.pack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.pack-card{position:relative;min-height:210px;padding:21px;border:0;border-radius:24px;text-align:left;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s}.pack-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px #423b6d22}.pack-0{background:#fff0e5}.pack-1{background:#ece9ff}.pack-2{background:#e5f7f0}.pack-3{background:#fff5cd}.pack-icon{font-size:36px;display:block;margin-bottom:22px}.pack-progress{position:absolute;right:14px;top:14px;font-size:9px;font-weight:900;background:#ffffffb5;padding:5px 8px;border-radius:10px}.pack-card small{display:block;text-transform:uppercase;letter-spacing:.1em;font-size:9px;color:#7c7793;font-weight:900}.pack-card b{display:block;font:700 21px 'Baloo 2';margin:4px 0 16px}.pack-card i{font-size:11px;font-style:normal;color:#6255b7;font-weight:900}.bottom-nav{display:none}.game-screen{min-height:100vh;background:#f4f3fa;display:flex;flex-direction:column}.game-top{min-height:76px;padding:10px 22px;display:flex;align-items:center;gap:15px;background:#fff}.game-top>div{display:grid}.game-top small{font-size:9px;color:#8d88a2;letter-spacing:.1em;font-weight:900}.game-top b{font:700 20px 'Baloo 2'}.timer{margin-left:auto;font-weight:800;color:#767187}.game-coins{background:#fff3cd;padding:8px 12px;border-radius:99px;color:#9a6d00;font-weight:900}.game-top button:last-child{font-size:14px}.game-progress{height:5px;background:#e3e0ef}.game-progress i{display:block;height:100%;background:#65caa3;transition:width .25s}.play-area{flex:1;min-height:0;padding:16px;display:grid;place-items:center;background:linear-gradient(#f1eff9,#e8e6f3)}.board{width:min(70vh,680px,94vw);aspect-ratio:1;display:grid;grid-template-columns:repeat(13,1fr);gap:1px;background:#39375a;border:3px solid #39375a;box-shadow:0 9px 24px #312e5440}.block{background:#3a3858}.cell{position:relative;border:0;padding:0;background:#fff;color:#302e50;aspect-ratio:1;cursor:pointer}.cell.in-word{background:#e8e3ff}.cell.selected{background:#ffc94d;box-shadow:inset 0 0 0 2px #e7a71a}.cell.wrong{color:#e15858}.cell small{position:absolute;left:2px;top:1px;font-size:clamp(5px,.7vw,9px);line-height:1}.cell span{font-weight:900;font-size:clamp(10px,2.1vh,24px)}.clue-bar{min-height:70px;background:#fff;display:grid;grid-template-columns:45px 1fr 45px;align-items:center;border-top:1px solid #e3e0ed;border-bottom:1px solid #e3e0ed}.clue-bar button{height:100%;border:0;background:none;font-size:31px;color:#6559bb;cursor:pointer}.clue-bar p{display:flex;gap:12px;align-items:center;margin:0;font-size:14px;text-align:center;justify-content:center}.clue-bar p b{color:#6255b6}.clue-bar p span{font-weight:700}.tool-row{display:flex;justify-content:center;gap:12px;background:#fff;padding:10px}.tool-row button{min-width:100px;border:0;background:#f0eef8;border-radius:13px;padding:8px 13px;display:flex;gap:8px;align-items:center;justify-content:center;cursor:pointer}.tool-row button>span:first-child{font-size:19px}.tool-row button>span:last-child{display:grid;text-align:left;font-weight:900;font-size:11px}.tool-row small{font-size:7px;color:#8d87a1}.keyboard{padding:7px 10px 14px;background:#d9d7e1}.keyboard div{display:flex;justify-content:center;gap:5px;margin:5px 0}.keyboard button{height:46px;flex:0 1 50px;max-width:62px;border:0;border-radius:7px;background:#fff;font-weight:900;box-shadow:0 2px 0 #aaa7b5;cursor:pointer}.keyboard .backspace{background:#aaa6bd;font-size:20px;flex-basis:65px}.toast{position:fixed;z-index:6;left:50%;bottom:210px;transform:translateX(-50%);background:#302d55;color:#fff;border-radius:12px;padding:10px 13px;font-size:12px;box-shadow:0 8px 30px #17142d55}.toast button{border:0;background:none;color:white;margin-left:12px}.modal-backdrop{position:fixed;z-index:10;inset:0;background:#272243b8;display:grid;place-items:center;padding:20px}.collection{position:relative;width:min(460px,100%);max-height:80vh;overflow:auto;background:#fbfaff;border-radius:28px;padding:38px;box-shadow:0 20px 80px #17132f80;text-align:center}.modal-close{position:absolute;right:17px;top:14px;border:0;background:#efedf7;width:34px;height:34px;border-radius:50%;font-size:22px}.trophy{font-size:50px}.collection h2{color:#373269;margin:4px 0 22px}.solved-row{display:flex;align-items:center;text-align:left;gap:13px;padding:14px 0;border-top:1px solid #e4e1ed}.solved-row>span{display:grid;place-items:center;width:35px;height:35px;border-radius:50%;background:#61c59f;color:#fff}.solved-row small{display:block;color:#8c879e;margin-top:2px}.empty{color:#827d95}.splash{min-height:100vh;display:grid;place-content:center;justify-items:center;gap:10px;background:#5144a9;color:#fff;font:800 28px 'Baloo 2'}.splash .logo-burst{width:65px;height:65px;font-size:36px}
-@media(max-width:760px){body{background:#f8f7fc}.app-frame{box-shadow:none}.home-header{height:64px;padding:0 16px}.wordmark{font-size:21px}.logo-burst{width:34px;height:34px}.home-main{padding:28px 15px 95px}.welcome{align-items:start}.welcome h1{font-size:36px}.welcome p{font-size:9px}.streak{padding:8px 10px}.streak b{font-size:25px}.streak span{font-size:8px}.date-strip{margin:24px 0 20px}.daily-card{grid-template-columns:.8fr 1.2fr;min-height:235px;border-radius:22px}.card-art{min-height:235px}.film{font-size:60px;left:8%}.star{font-size:38px}.ticket{font-size:7px;padding:10px;right:5%}.daily-copy{padding:20px 16px}.daily-copy p{font-size:9px;margin-top:12px}.daily-copy h2{font-size:28px}.daily-copy small{font-size:10px;margin-bottom:16px}.daily-copy button{padding:10px 13px;font-size:12px}.packs-head{margin-top:38px}.packs-head h2{font-size:32px}.pack-grid{grid-template-columns:1fr 1fr;gap:10px}.pack-card{min-height:175px;padding:16px}.pack-icon{font-size:29px;margin-bottom:15px}.pack-card b{font-size:18px}.bottom-nav{position:fixed;z-index:4;bottom:0;left:0;right:0;height:68px;background:#fff;border-top:1px solid #e5e2ef;display:flex;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom)}.bottom-nav button{border:0;background:none;color:#928da4;display:grid;place-items:center;font-size:18px}.bottom-nav button span:last-child{font-size:8px;font-weight:900}.bottom-nav button.active{color:#5a4eb1}.game-top{min-height:61px;padding:7px 10px;gap:8px}.game-top button{width:36px;height:36px}.game-top small{font-size:7px}.game-top b{font-size:16px}.timer{font-size:11px}.game-coins{font-size:10px;padding:6px 8px}.play-area{padding:8px;align-items:center}.board{width:min(94vw,54vh);box-shadow:0 5px 15px #312e5430}.clue-bar{min-height:64px}.clue-bar p{font-size:12px;gap:7px}.tool-row{padding:8px;gap:6px}.tool-row button{min-width:0;flex:1;max-width:115px;padding:7px 5px}.keyboard{padding:4px 4px max(8px,env(safe-area-inset-bottom))}.keyboard div{gap:3px;margin:4px 0}.keyboard button{height:42px;font-size:13px}.toast{bottom:195px;white-space:nowrap}.collection{padding:34px 22px}}@media(max-width:390px){.daily-card{grid-template-columns:.68fr 1.32fr}.date-strip{padding:6px}.date-strip div{padding:6px 1px}.game-top>div{max-width:105px}.game-top b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.game-coins{display:none}.board{width:min(96vw,51vh)}.keyboard button{height:39px}.tool-row button>span:first-child{font-size:16px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;600;700;800&display=swap");
+:root {
+  font-family: "Nunito", sans-serif;
+  color: #282947;
+  background: #dedcf1;
+  font-synthesis: none;
+  --purple: #5144a9;
+  --yellow: #ffc94d;
+  --ink: #282947;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+button {
+  font: inherit;
+  color: inherit;
+}
+.app-frame {
+  width: min(100%, 1180px);
+  min-height: 100vh;
+  margin: auto;
+  background: #f8f7fc;
+  box-shadow: 0 0 50px #35306425;
+  position: relative;
+}
+.home-header {
+  height: 76px;
+  padding: 0 clamp(18px, 5vw, 54px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+}
+.round-btn,
+.game-top button {
+  border: 0;
+  background: #f0eef8;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font: 800 25px "Baloo 2";
+  color: #4d43a8;
+}
+.logo-burst {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px 13px 13px 3px;
+  background: #ffc94d;
+  color: #4d43a8;
+  font: 800 23px "Baloo 2";
+  transform: rotate(-5deg);
+}
+.wordmark .logo-burst {
+  font-size: 20px;
+}
+.coin-pill {
+  border: 0;
+  background: #f2efff;
+  color: #5144a9;
+  border-radius: 99px;
+  padding: 9px 14px;
+  font-weight: 800;
+}
+.coin-pill span {
+  color: #f5ae16;
+}
+.quick-menu {
+  position: absolute;
+  top: 68px;
+  left: 20px;
+  z-index: 5;
+  width: 210px;
+  background: white;
+  border-radius: 17px;
+  padding: 8px;
+  box-shadow: 0 15px 40px #302b6160;
+}
+.quick-menu button {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: none;
+  text-align: left;
+  padding: 12px;
+  border-radius: 10px;
+}
+.home-main {
+  padding: 44px clamp(18px, 5vw, 58px) 110px;
+}
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.welcome p,
+.mini-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  color: #7d789c;
+  text-transform: uppercase;
+}
+.welcome h1 {
+  font: 800 clamp(36px, 5vw, 64px) / 0.98 "Baloo 2";
+  margin: 7px 0;
+  color: #312d63;
+}
+.welcome h1 em {
+  color: #6f5ed2;
+  font-style: normal;
+}
+.streak {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff0d4;
+  border-radius: 20px;
+  padding: 12px 16px;
+  color: #d76b30;
+}
+.streak b {
+  font: 800 32px "Baloo 2";
+}
+.streak span {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.date-strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  max-width: 640px;
+  margin: 38px auto 30px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 9px;
+  box-shadow: 0 8px 30px #3e376a12;
+}
+.date-strip div {
+  position: relative;
+  text-align: center;
+  padding: 8px 2px;
+  border-radius: 14px;
+  display: grid;
+  gap: 1px;
+}
+.date-strip small {
+  font-size: 10px;
+  color: #9691ad;
+}
+.date-strip b {
+  font-size: 15px;
+}
+.date-strip span {
+  position: absolute;
+  right: 5px;
+  top: 3px;
+  color: #5abf99;
+  font-size: 8px;
+}
+.date-strip .today {
+  background: #5b4db5;
+  color: #fff;
+}
+.date-strip .today small {
+  color: #d7d2ff;
+}
+.daily-card {
+  min-height: 280px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #5243aa, #7664d1);
+  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  overflow: hidden;
+  box-shadow: 0 20px 50px #463e8b30;
+}
+.card-art {
+  position: relative;
+  min-height: 260px;
+  background: radial-gradient(circle at 45% 50%, #8171df 0 3px, transparent 4px),
+    linear-gradient(145deg, #382f87, #6b58c3);
+  background-size: 22px 22px, auto;
+}
+.film {
+  position: absolute;
+  left: 16%;
+  top: 24%;
+  font-size: 95px;
+  transform: rotate(-12deg);
+  color: #ffd05c;
+  text-shadow: 8px 9px 0 #2f286f;
+}
+.star {
+  position: absolute;
+  right: 13%;
+  top: 17%;
+  font-size: 56px;
+  color: #ef7b7a;
+  transform: rotate(10deg);
+}
+.ticket {
+  position: absolute;
+  right: 12%;
+  bottom: 20%;
+  padding: 16px 21px;
+  background: #fff3c4;
+  color: #5a48a9;
+  font-weight: 900;
+  font-size: 11px;
+  transform: rotate(8deg);
+  box-shadow: 6px 6px 0 #f09c62;
+}
+.daily-copy {
+  align-self: center;
+  padding: 34px clamp(24px, 5vw, 62px);
+}
+.tag {
+  display: inline-block;
+  background: #ffc94d;
+  color: #473a91;
+  border-radius: 6px;
+  padding: 5px 9px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+.daily-copy p {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  margin: 18px 0 4px;
+  color: #d9d4ff;
+}
+.daily-copy h2,
+.packs-head h2,
+.collection h2 {
+  font: 800 clamp(31px, 4vw, 48px) / 1 "Baloo 2";
+  margin: 0;
+}
+.daily-copy small {
+  display: block;
+  margin: 8px 0 24px;
+  color: #d9d4ff;
+}
+.daily-copy button {
+  border: 0;
+  border-radius: 14px;
+  background: #ffc94d;
+  color: #3c337e;
+  padding: 13px 20px;
+  font-weight: 900;
+  box-shadow: 0 5px 0 #dca12d;
+  cursor: pointer;
+}
+.packs-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin: 55px 0 20px;
+}
+.packs-head h2 {
+  color: #332f65;
+}
+.packs-head button {
+  border: 0;
+  background: none;
+  color: #6b5ac6;
+  font-weight: 800;
+  cursor: pointer;
+}
+.pack-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.pack-card {
+  position: relative;
+  min-height: 210px;
+  padding: 21px;
+  border: 0;
+  border-radius: 24px;
+  text-align: left;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.pack-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px #423b6d22;
+}
+.pack-0 {
+  background: #fff0e5;
+}
+.pack-1 {
+  background: #ece9ff;
+}
+.pack-2 {
+  background: #e5f7f0;
+}
+.pack-3 {
+  background: #fff5cd;
+}
+.pack-icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 22px;
+}
+.pack-progress {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  font-size: 9px;
+  font-weight: 900;
+  background: #ffffffb5;
+  padding: 5px 8px;
+  border-radius: 10px;
+}
+.pack-card small {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 9px;
+  color: #7c7793;
+  font-weight: 900;
+}
+.pack-card b {
+  display: block;
+  font: 700 21px "Baloo 2";
+  margin: 4px 0 16px;
+}
+.pack-card i {
+  font-size: 11px;
+  font-style: normal;
+  color: #6255b7;
+  font-weight: 900;
+}
+.bottom-nav {
+  display: none;
+}
+.game-screen {
+  min-height: 100vh;
+  background: #f4f3fa;
+  display: flex;
+  flex-direction: column;
+}
+.game-top {
+  min-height: 76px;
+  padding: 10px 22px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+}
+.game-top > div {
+  display: grid;
+}
+.game-top small {
+  font-size: 9px;
+  color: #8d88a2;
+  letter-spacing: 0.1em;
+  font-weight: 900;
+}
+.game-top b {
+  font: 700 20px "Baloo 2";
+}
+.timer {
+  margin-left: auto;
+  font-weight: 800;
+  color: #767187;
+}
+.game-coins {
+  background: #fff3cd;
+  padding: 8px 12px;
+  border-radius: 99px;
+  color: #9a6d00;
+  font-weight: 900;
+}
+.game-top button:last-child {
+  font-size: 14px;
+}
+.game-progress {
+  height: 5px;
+  background: #e3e0ef;
+}
+.game-progress i {
+  display: block;
+  height: 100%;
+  background: #65caa3;
+  transition: width 0.25s;
+}
+.play-area {
+  /* flex: 1; */
+  min-height: 0;
+  padding: 16px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(#f1eff9, #e8e6f3);
+}
+.board {
+  width: min(70vh, 680px, 94vw);
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 1px;
+  background: #39375a;
+  border: 3px solid #39375a;
+  box-shadow: 0 9px 24px #312e5440;
+}
+.block {
+  background: #3a3858;
+}
+.cell {
+  position: relative;
+  border: 0;
+  padding: 0;
+  background: #fff;
+  color: #302e50;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+.cell.in-word {
+  background: #e8e3ff;
+}
+.cell.selected {
+  background: #ffc94d;
+  box-shadow: inset 0 0 0 2px #e7a71a;
+}
+.cell.wrong {
+  color: #e15858;
+}
+.cell small {
+  position: absolute;
+  left: 2px;
+  top: 1px;
+  font-size: clamp(5px, 0.7vw, 9px);
+  line-height: 1;
+}
+.cell span {
+  font-weight: 900;
+  font-size: clamp(10px, 2.1vh, 24px);
+}
+.clue-bar {
+  min-height: 70px;
+  background: #fff;
+  display: grid;
+  grid-template-columns: 45px 1fr 45px;
+  align-items: center;
+  border-top: 1px solid #e3e0ed;
+  border-bottom: 1px solid #e3e0ed;
+}
+.clue-bar button {
+  height: 100%;
+  border: 0;
+  background: none;
+  font-size: 31px;
+  color: #6559bb;
+  cursor: pointer;
+}
+.clue-bar p {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  justify-content: center;
+}
+.clue-bar p b {
+  color: #6255b6;
+}
+.clue-bar p span {
+  font-weight: 700;
+}
+.tool-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  background: #fff;
+  padding: 10px;
+}
+.tool-row button {
+  min-width: 100px;
+  border: 0;
+  background: #f0eef8;
+  border-radius: 13px;
+  padding: 8px 13px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.tool-row button > span:first-child {
+  font-size: 19px;
+}
+.tool-row button > span:last-child {
+  display: grid;
+  text-align: left;
+  font-weight: 900;
+  font-size: 11px;
+}
+.tool-row small {
+  font-size: 7px;
+  color: #8d87a1;
+}
+.keyboard {
+  padding: 7px 10px 14px;
+  background: #d9d7e1;
+}
+.keyboard div {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 5px 0;
+}
+.keyboard button {
+  height: 46px;
+  flex: 0 1 50px;
+  max-width: 62px;
+  border: 0;
+  border-radius: 7px;
+  background: #fff;
+  font-weight: 900;
+  box-shadow: 0 2px 0 #aaa7b5;
+  cursor: pointer;
+}
+.keyboard .backspace {
+  background: #aaa6bd;
+  font-size: 20px;
+  flex-basis: 65px;
+}
+.toast {
+  position: fixed;
+  z-index: 6;
+  left: 50%;
+  bottom: 210px;
+  transform: translateX(-50%);
+  background: #302d55;
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 13px;
+  font-size: 12px;
+  box-shadow: 0 8px 30px #17142d55;
+}
+.toast button {
+  border: 0;
+  background: none;
+  color: white;
+  margin-left: 12px;
+}
+.modal-backdrop {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  background: #272243b8;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.collection {
+  position: relative;
+  width: min(460px, 100%);
+  max-height: 80vh;
+  overflow: auto;
+  background: #fbfaff;
+  border-radius: 28px;
+  padding: 38px;
+  box-shadow: 0 20px 80px #17132f80;
+  text-align: center;
+}
+.modal-close {
+  position: absolute;
+  right: 17px;
+  top: 14px;
+  border: 0;
+  background: #efedf7;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 22px;
+}
+.trophy {
+  font-size: 50px;
+}
+.collection h2 {
+  color: #373269;
+  margin: 4px 0 22px;
+}
+.solved-row {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 13px;
+  padding: 14px 0;
+  border-top: 1px solid #e4e1ed;
+}
+.solved-row > span {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #61c59f;
+  color: #fff;
+}
+.solved-row small {
+  display: block;
+  color: #8c879e;
+  margin-top: 2px;
+}
+.empty {
+  color: #827d95;
+}
+.splash {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  background: #5144a9;
+  color: #fff;
+  font: 800 28px "Baloo 2";
+}
+.splash .logo-burst {
+  width: 65px;
+  height: 65px;
+  font-size: 36px;
+}
+@media (max-width: 760px) {
+  body {
+    background: #f8f7fc;
+  }
+  .app-frame {
+    box-shadow: none;
+  }
+  .home-header {
+    height: 64px;
+    padding: 0 16px;
+  }
+  .wordmark {
+    font-size: 21px;
+  }
+  .logo-burst {
+    width: 34px;
+    height: 34px;
+  }
+  .home-main {
+    padding: 28px 15px 95px;
+  }
+  .welcome {
+    align-items: start;
+  }
+  .welcome h1 {
+    font-size: 36px;
+  }
+  .welcome p {
+    font-size: 9px;
+  }
+  .streak {
+    padding: 8px 10px;
+  }
+  .streak b {
+    font-size: 25px;
+  }
+  .streak span {
+    font-size: 8px;
+  }
+  .date-strip {
+    margin: 24px 0 20px;
+  }
+  .daily-card {
+    grid-template-columns: 0.8fr 1.2fr;
+    min-height: 235px;
+    border-radius: 22px;
+  }
+  .card-art {
+    min-height: 235px;
+  }
+  .film {
+    font-size: 60px;
+    left: 8%;
+  }
+  .star {
+    font-size: 38px;
+  }
+  .ticket {
+    font-size: 7px;
+    padding: 10px;
+    right: 5%;
+  }
+  .daily-copy {
+    padding: 20px 16px;
+  }
+  .daily-copy p {
+    font-size: 9px;
+    margin-top: 12px;
+  }
+  .daily-copy h2 {
+    font-size: 28px;
+  }
+  .daily-copy small {
+    font-size: 10px;
+    margin-bottom: 16px;
+  }
+  .daily-copy button {
+    padding: 10px 13px;
+    font-size: 12px;
+  }
+  .packs-head {
+    margin-top: 38px;
+  }
+  .packs-head h2 {
+    font-size: 32px;
+  }
+  .pack-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .pack-card {
+    min-height: 175px;
+    padding: 16px;
+  }
+  .pack-icon {
+    font-size: 29px;
+    margin-bottom: 15px;
+  }
+  .pack-card b {
+    font-size: 18px;
+  }
+  .bottom-nav {
+    position: fixed;
+    z-index: 4;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 68px;
+    background: #fff;
+    border-top: 1px solid #e5e2ef;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .bottom-nav button {
+    border: 0;
+    background: none;
+    color: #928da4;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+  }
+  .bottom-nav button span:last-child {
+    font-size: 8px;
+    font-weight: 900;
+  }
+  .bottom-nav button.active {
+    color: #5a4eb1;
+  }
+  .game-top {
+    min-height: 61px;
+    padding: 7px 10px;
+    gap: 8px;
+  }
+  .game-top button {
+    width: 36px;
+    height: 36px;
+  }
+  .game-top small {
+    font-size: 7px;
+  }
+  .game-top b {
+    font-size: 16px;
+  }
+  .timer {
+    font-size: 11px;
+  }
+  .game-coins {
+    font-size: 10px;
+    padding: 6px 8px;
+  }
+  .play-area {
+    padding: 8px;
+    align-items: center;
+  }
+  .board {
+    width: min(94vw, 54vh);
+    box-shadow: 0 5px 15px #312e5430;
+  }
+  .clue-bar {
+    min-height: 64px;
+  }
+  .clue-bar p {
+    font-size: 12px;
+    gap: 7px;
+  }
+  .tool-row {
+    padding: 8px;
+    gap: 6px;
+  }
+  .tool-row button {
+    min-width: 0;
+    flex: 1;
+    max-width: 115px;
+    padding: 7px 5px;
+  }
+  .keyboard {
+    padding: 4px 4px max(8px, env(safe-area-inset-bottom));
+  }
+  .keyboard div {
+    gap: 3px;
+    margin: 4px 0;
+  }
+  .keyboard button {
+    height: 42px;
+    font-size: 13px;
+  }
+  .toast {
+    bottom: 195px;
+    white-space: nowrap;
+  }
+  .collection {
+    padding: 34px 22px;
+  }
+}
+@media (max-width: 390px) {
+  .daily-card {
+    grid-template-columns: 0.68fr 1.32fr;
+  }
+  .date-strip {
+    padding: 6px;
+  }
+  .date-strip div {
+    padding: 6px 1px;
+  }
+  .game-top > div {
+    max-width: 105px;
+  }
+  .game-top b {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .game-coins {
+    display: none;
+  }
+  .board {
+    width: min(96vw, 51vh);
+  }
+  .keyboard button {
+    height: 39px;
+  }
+  .tool-row button > span:first-child {
+    font-size: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
