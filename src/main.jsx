@@ -23,6 +23,28 @@ const THEME_ICONS = {
   Weather: "🌦️",
   Art: "🎨",
   Home: "🏠",
+  Space: "🚀",
+  Travel: "✈️",
+  Garden: "🌻",
+  Ocean: "🌊",
+  School: "✏️",
+  Holidays: "🎉",
+  Technology: "💻",
+  Wellness: "🧘",
+  Fashion: "👗",
+  Transportation: "🚆",
+  Mythology: "⚡",
+  Coffee: "☕",
+  Astronomy: "🔭",
+  Literature: "🩶",
+  "Ancient History": "🏺",
+  Biology: "🧬",
+  Architecture: "🏛️",
+  "Classical Music": "🎻",
+  "Culinary Arts": "🧑‍🍳",
+  Language: "💬",
+  Philosophy: "🤔",
+  Capitals: "📍",
 };
 
 function buildGrid(words) {
@@ -429,7 +451,7 @@ function App() {
                 <small>
                   {heroProgress
                     ? `${heroProgress} letters filled`
-                    : "Easy · 5–8 min"}
+                    : `${heroPuzzle.difficulty || "Easy"} · 5–8 min`}
                 </small>
                 <button onClick={() => openPuzzle(heroPuzzle)}>
                   {heroProgress
@@ -505,7 +527,10 @@ function App() {
                 ‹
               </button>
               <div>
-                <small>{selected.theme.toUpperCase()} · EASY</small>
+                <small>
+                  {selected.theme.toUpperCase()} ·{" "}
+                  {(selected.difficulty || "Easy").toUpperCase()}
+                </small>
                 <b>{selected.title}</b>
               </div>
               <span className="timer">◷ {time}</span>

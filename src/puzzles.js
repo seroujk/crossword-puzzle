@@ -62,5 +62,93 @@ export const puzzles = [
   {
     id: 'home-sweet-home', theme: 'Home', title: 'Home Sweet Home', kicker: 'Comfortable clues from every room.', color: '#7b8a59',
     words: [['LAMP','A small source of light'],['PILLOW','A soft place to rest your head'],['CHAIR','A seat for one person'],['WINDOW','An opening that lets in light'],['MIRROR','Something that shows your reflection'],['KITCHEN','Room where meals are prepared'],['TABLE','Furniture with a flat top'],['GARDEN','A place where flowers may grow']]
+  },
+  {
+    id: 'cosmic-quest', theme: 'Space', title: 'Cosmic Quest', kicker: 'Answers from beyond the atmosphere.', color: '#5964b0',
+    words: [['MARS','The red planet'],['COMET','An icy visitor with a glowing tail'],['STAR','A bright sun in the night sky'],['ORBIT','The curved path around a planet'],['MOON','Earth\'s natural satellite'],['GALAXY','A vast family of stars'],['ALIEN','A being from another world'],['ASTRONAUT','A traveler who ventures into space']]
+  },
+  {
+    id: 'happy-travels', theme: 'Travel', title: 'Happy Travels', kicker: 'Pack your clues and go.', color: '#d07b43',
+    words: [['JOURNEY','A trip from one place to another'],['LUGGAGE','Bags packed for a trip'],['HOTEL','A place for travelers to stay'],['TICKET','A pass for a ride or event'],['TOUR','A guided sightseeing trip'],['PASSPORT','Document used for international travel'],['CAMERA','A device for capturing vacation memories'],['MAP','A guide showing roads and places']]
+  },
+  {
+    id: 'garden-party', theme: 'Garden', title: 'Garden Party', kicker: 'Let your vocabulary bloom.', color: '#5b9b5a',
+    words: [['BLOSSOM','A flower on a plant or tree'],['SHOVEL','A tool used for digging'],['SEED','The start of a new plant'],['PETAL','One colorful part of a flower'],['SOIL','Earth where plants grow'],['WATER','What keeps thirsty plants growing'],['BEE','A buzzing garden pollinator'],['ROSE','A flower often given with love']]
+  },
+  {
+    id: 'under-the-sea', theme: 'Ocean', title: 'Under the Sea', kicker: 'Dive into a wave of clues.', color: '#378fa5',
+    words: [['WHALE','A giant marine mammal'],['SEASHELL','A hard ocean treasure found on beaches'],['CORAL','A colorful reef builder'],['SHARK','A fish with rows of sharp teeth'],['TIDE','The sea\'s regular rise and fall'],['OCTOPUS','A sea animal with eight arms'],['DOLPHIN','A playful and intelligent sea mammal'],['WAVE','Water that rolls toward the shore']]
+  },
+  {
+    id: 'school-days', theme: 'School', title: 'School Days', kicker: 'Class is in session.', color: '#d09235',
+    words: [['TEACHER','The person leading a class'],['PENCIL','A writing tool with an eraser'],['RECESS','A break between classes'],['DESK','A table used for schoolwork'],['LESSON','Something taught in class'],['NOTEBOOK','A book of blank pages for writing'],['STUDENT','A person who is learning'],['QUIZ','A short test']]
+  },
+  {
+    id: 'celebration-station', theme: 'Holidays', title: 'Celebration Station', kicker: 'Every day is worth celebrating.', color: '#c95467',
+    words: [['CANDLE','A wax light on a birthday cake'],['PARTY','A gathering for fun'],['GIFT','A present for someone special'],['FESTIVE','Full of holiday cheer'],['PARADE','A public procession with music and floats'],['FIREWORK','A colorful burst in the night sky'],['CARD','A folded greeting sent for an occasion'],['BALLOON','An air-filled party decoration']]
+  },
+  {
+    id: 'digital-life', theme: 'Technology', title: 'Digital Life', kicker: 'Power up your word skills.', color: '#4c79a8',
+    words: [['ROBOT','A machine that can perform tasks'],['COMPUTER','An electronic machine for work and play'],['MOUSE','A handheld computer pointer'],['SCREEN','Where a device displays pictures'],['EMAIL','A message sent over the internet'],['TABLET','A portable computer with a touch screen'],['BUTTON','Something you press to give a command'],['WIFI','A wireless internet connection']]
+  },
+  {
+    id: 'feel-good', theme: 'Wellness', title: 'Feel Good', kicker: 'A mindful moment for you.', color: '#58a08b',
+    words: [['BALANCE','A steady and healthy state'],['BREATHE','Take air into your lungs'],['REST','Time to relax and recover'],['YOGA','Exercise using poses and breathing'],['SLEEP','Nightly rest for body and mind'],['SMILE','A happy expression'],['WATER','A drink that keeps you hydrated'],['WALK','A gentle way to move your body']]
+  },
+  {
+    id: 'style-file', theme: 'Fashion', title: 'Style File', kicker: 'Dress up your vocabulary.', color: '#bd638d',
+    words: [['OUTFIT','A complete set of clothes'],['JACKET','A short coat'],['BUTTON','A small fastener on clothing'],['SCARF','A piece of fabric worn around the neck'],['SHOES','What you wear on your feet'],['DRESS','A one-piece garment'],['POCKET','A small pouch sewn into clothing'],['HAT','Something worn on the head']]
+  },
+  {
+    id: 'on-the-move', theme: 'Transportation', title: 'On the Move', kicker: 'Clues that are going places.', color: '#737e96',
+    words: [['BOAT','A small vessel for traveling on water'],['AIRPLANE','A flying passenger vehicle'],['TRAIN','A line of rail cars'],['BICYCLE','A two-wheeled vehicle powered by pedals'],['SUBWAY','An underground city train'],['BUS','A large road vehicle for many passengers'],['TAXI','A car hired for a ride'],['SCOOTER','A small two-wheeled ride']]
+  },
+  {
+    id: 'gods-and-heroes', theme: 'Mythology', title: 'Gods & Heroes', kicker: 'Legendary clues await.', color: '#9a6f43',
+    words: [['HERO','A brave figure in a legendary tale'],['ORACLE','A source of prophecy in ancient stories'],['MYTH','A traditional story about gods or heroes'],['ZEUS','Greek god who wielded lightning'],['TITAN','A powerful ancient Greek deity'],['OLYMPUS','Mythical mountain home of the Greek gods'],['ATLAS','Titan said to hold up the sky'],['MUSE','A goddess who inspires the arts']]
+  },
+  {
+    id: 'coffee-break', theme: 'Coffee', title: 'Coffee Break', kicker: 'A fresh-brewed batch of clues.', color: '#936247',
+    words: [['CREAM','A rich addition to coffee'],['ESPRESSO','A small, strong coffee'],['MUG','A handled cup for a hot drink'],['LATTE','Espresso mixed with steamed milk'],['BEANS','Roasted seeds used to make coffee'],['CAFE','A place that serves coffee'],['ROAST','To heat coffee beans until they darken'],['AROMA','The inviting smell of a fresh brew']]
+  },
+  {
+    id: 'deep-space', theme: 'Astronomy', title: 'Deep Space', kicker: 'Navigate the far reaches of the cosmos.', color: '#484b91', difficulty: 'Hard',
+    words: [['APHELION','The orbital point farthest from the sun'],['NEBULA','An interstellar cloud of gas and dust'],['PULSAR','A rapidly rotating neutron star'],['QUASAR','An intensely luminous galactic core'],['ZENITH','The point directly overhead'],['ECLIPTIC','The apparent yearly path of the sun'],['PARALLAX','An apparent shift used to gauge stellar distance'],['SUPERNOVA','A star\'s catastrophic explosion']]
+  },
+  {
+    id: 'between-the-lines', theme: 'Literature', title: 'Between the Lines', kicker: 'Read closely: every clue has a story.', color: '#745b91', difficulty: 'Hard',
+    words: [['SONNET','A poem traditionally written in fourteen lines'],['METAPHOR','A comparison made without like or as'],['PROTAGONIST','The central character in a narrative'],['ALLEGORY','A narrative with a second, symbolic meaning'],['STANZA','A grouped set of lines in a poem'],['EPILOGUE','A section that follows the main ending'],['SATIRE','Humor used to expose folly or vice'],['NARRATOR','The voice that tells a story']]
+  },
+  {
+    id: 'ancient-worlds', theme: 'Ancient History', title: 'Ancient Worlds', kicker: 'Unearth civilizations and empires.', color: '#a46c42', difficulty: 'Hard',
+    words: [['CUNEIFORM','Wedge-shaped writing of ancient Mesopotamia'],['SENATE','Rome\'s influential council of elders'],['PHARAOH','A sovereign of ancient Egypt'],['DYNASTY','A succession of rulers from one family'],['AQUEDUCT','A channel built to carry water'],['EMPIRE','Territories governed by a single authority'],['PAPYRUS','An Egyptian writing material made from reeds'],['LEGION','A major unit of the Roman army']]
+  },
+  {
+    id: 'living-systems', theme: 'Biology', title: 'Living Systems', kicker: 'Explore the machinery of life.', color: '#3f886f', difficulty: 'Hard',
+    words: [['GENOME','An organism\'s complete set of genetic material'],['MITOSIS','Cell division producing two identical nuclei'],['ENZYME','A protein that accelerates a reaction'],['OSMOSIS','Movement of water through a selective membrane'],['NEURON','A cell specialized to transmit nerve impulses'],['CHLOROPHYLL','The green pigment used in photosynthesis'],['ANTIBODY','A protein that recognizes a foreign substance'],['CELLULAR','Relating to life\'s basic structural units']]
+  },
+  {
+    id: 'built-to-last', theme: 'Architecture', title: 'Built to Last', kicker: 'Raise a landmark one answer at a time.', color: '#677782', difficulty: 'Hard',
+    words: [['FACADE','The principal face of a building'],['CORNICE','A decorative molding along a roofline'],['PORTICO','A roofed entrance supported by columns'],['ATRIUM','A central open court or interior hall'],['BUTTRESS','A projecting support built against a wall'],['ROTUNDA','A circular building beneath a dome'],['COLONNADE','A long sequence of regularly spaced columns'],['BLUEPRINT','A detailed architectural plan']]
+  },
+  {
+    id: 'grand-compositions', theme: 'Classical Music', title: 'Grand Compositions', kicker: 'A virtuoso set for serious solvers.', color: '#8c5467', difficulty: 'Hard',
+    words: [['CONCERTO','A composition featuring a soloist with orchestra'],['CADENZA','A showy solo passage within a larger work'],['SYMPHONY','An extended orchestral composition'],['SONATA','A multi-movement work for one or two instruments'],['OVERTURE','An orchestral introduction to a stage work'],['TEMPO','The speed at which music is performed'],['OPERA','Drama set primarily to music'],['MAESTRO','An eminent conductor or musician']]
+  },
+  {
+    id: 'chefs-table', theme: 'Culinary Arts', title: 'Chef\'s Table', kicker: 'Techniques and tastes for seasoned solvers.', color: '#bd6a3c', difficulty: 'Hard',
+    words: [['EMULSION','A stable blend of liquids that resist mixing'],['JULIENNE','To cut food into thin matchstick strips'],['ROUX','Cooked mixture of fat and flour used to thicken'],['REDUCTION','A sauce concentrated through simmering'],['BLANCH','To scald briefly, then cool rapidly'],['SAUTE','To fry quickly in a small amount of fat'],['UMAMI','The savory fifth basic taste'],['GANACHE','A smooth mixture of chocolate and cream']]
+  },
+  {
+    id: 'word-origins', theme: 'Language', title: 'Word Origins', kicker: 'Parse the patterns behind what we say.', color: '#487e98', difficulty: 'Hard',
+    words: [['HOMONYM','A word sharing form with another but not meaning'],['ETYMOLOGY','The study of word origins'],['PHONEME','The smallest sound unit distinguishing meaning'],['SYNTAX','Rules governing sentence structure'],['PREFIX','An element attached to the start of a word'],['DIALECT','A regional or social variety of a language'],['VOWEL','A speech sound made without blocking airflow'],['IDIOM','A phrase whose meaning is not literal']]
+  },
+  {
+    id: 'big-questions', theme: 'Philosophy', title: 'Big Questions', kicker: 'Reason your way through timeless ideas.', color: '#69629a', difficulty: 'Hard',
+    words: [['LOGIC','The study of valid reasoning'],['PARADOX','A seeming contradiction that may reveal truth'],['EMPIRICISM','The view that knowledge arises from experience'],['REASON','The capacity for rational thought'],['ETHICS','The branch concerned with moral principles'],['STOICISM','A school valuing virtue and self-control'],['VIRTUE','Moral excellence'],['SOCRATES','Athenian philosopher known for probing questions']]
+  },
+  {
+    id: 'capital-challenge', theme: 'Capitals', title: 'Capital Challenge', kicker: 'A global tour without the easy stops.', color: '#4d7891', difficulty: 'Hard',
+    words: [['LJUBLJANA','Capital on the Ljubljanica River'],['CANBERRA','Australian capital designed around Lake Burley Griffin'],['OTTAWA','Capital standing on the Rideau Canal'],['ANKARA','Turkish capital in central Anatolia'],['NAIROBI','East African capital bordering a national park'],['REYKJAVIK','The world\'s northernmost sovereign-state capital'],['HANOI','Capital on the banks of the Red River'],['QUITO','Andean capital near the equator']]
   }
 ];
