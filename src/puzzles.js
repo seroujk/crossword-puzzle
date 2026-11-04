@@ -150,5 +150,9 @@ export const puzzles = [
   {
     id: 'capital-challenge', theme: 'Capitals', title: 'Capital Challenge', kicker: 'A global tour without the easy stops.', color: '#4d7891', difficulty: 'Hard',
     words: [['LJUBLJANA','Capital on the Ljubljanica River'],['CANBERRA','Australian capital designed around Lake Burley Griffin'],['OTTAWA','Capital standing on the Rideau Canal'],['ANKARA','Turkish capital in central Anatolia'],['NAIROBI','East African capital bordering a national park'],['REYKJAVIK','The world\'s northernmost sovereign-state capital'],['HANOI','Capital on the banks of the Red River'],['QUITO','Andean capital near the equator']]
+  },
+  {
+    id: 'anis-birthday', theme: 'Birthday', title: 'Ani\'s Birthday', kicker: 'A special puzzle celebrating a very special mom.', color: '#d65f86', difficulty: 'Special',
+    words: [['ENGLISH','The subject Ani taught'],['CHARBEL','Ani\'s favorite Lebanese saint, Mar ___'],['NOVEMBER','Ani\'s birth month: the 4th, 1965'],['CROCHET','Ani\'s creative yarn craft'],['BANK','Where Ani also worked'],['LIGOLIGO','A favorite Greek song, written without a space'],['HOMENETMEN','The Lebanese basketball team Ani loves'],['MECHANIC','Her father\'s profession']]
   }
 ];

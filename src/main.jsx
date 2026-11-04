@@ -45,6 +45,7 @@ const THEME_ICONS = {
   Language: "💬",
   Philosophy: "🤔",
   Capitals: "📍",
+  Birthday: "🎂",
 };
 
 function buildGrid(words) {
